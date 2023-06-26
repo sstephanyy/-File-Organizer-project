@@ -8,10 +8,15 @@ const document = ['pdf', 'docx', 'doc'];
 const videos = ['mp4', 'mov'];
 
 //Read files from the source directory (folder named 'source')
-fs.readdir('./source', (err, data) => {
+
+fs.readdir('./source', (err, files) => {
   if(err){
     console.log(err)
-   } else{
-    console.log(data);
+   } else {
+    files.forEach((file) => {
+      if(file == '.jpg'){
+        console.log('there is a .jpg file')
+      }
+    })
    } 
 });
