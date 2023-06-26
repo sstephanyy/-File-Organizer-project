@@ -2,5 +2,7 @@
 
 const fs = require('fs'); //file system module
 
-// First - orginze the images files...
+// First - specyfing the files extensions....
 const images = ['png', 'jpg', 'jpeg'];
+const document = ['pdf', 'docx', 'doc'];
+const videos = ['mp4', 'mov'];
