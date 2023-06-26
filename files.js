@@ -4,11 +4,9 @@ const fs = require('fs'); //file system module
 const path = require('path');
 
 // First - specyfing the files extensions....
-const images = ['png', 'jpg', 'jpeg'];
-const document = ['pdf', 'docx', 'doc'];
+const images = ['.png', '.jpg', '.jpeg'];
+const documents = ['pdf', 'docx', 'doc'];
 const videos = ['mp4', 'mov'];
-
-//Read files from the source directory (folder named 'source')
 
 //readdir - get  list of every file inside the folder...
 fs.readdir('./source', (err, files) => {
@@ -16,11 +14,10 @@ fs.readdir('./source', (err, files) => {
     console.log(err);
   } else {
     files.forEach((file) => {
-      if (file === '.jpg') {
-        console.log('there is a .jpg file');
-      } else {
-        console.log('nothing here!');
-      }
+      const filesExtention = path.extname(file).toLowerCase(); //path.extname allow you to extract specific components from file paths, such as file extensions.
+      if (images.includes(filesExtention)) {
+        console.log(filesExtention);
+      }       
     });
   }
 });
