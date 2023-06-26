@@ -1,34 +1,34 @@
-// file manager in node js --- FIRST PROJECT
-
-const fs = require('fs'); //file system module
+const fs = require('fs');
 const path = require('path');
 
-// First - specyfing the files extensions....
 const images = ['.png', '.jpg', '.jpeg'];
-const documents = ['pdf', 'docx', 'doc'];
-const videos = ['mp4', 'mov'];
-
 const source = './source';
 const imageFolder = './images';
 
-//make a image folder
-
 if (!fs.existsSync(imageFolder)) {
-  fs.mkdir(imageFolder, (err) => {
-    err ? console.log(err) : console.log('Folder created!!');
-  });
-} 
+  fs.mkdirSync(imageFolder);
+  console.log('Image folder created!');
+}
 
-//readdir - get  list of every file inside the folder...
 fs.readdir(source, (err, files) => {
   if (err) {
-    console.log(err);
-  } else {
-    files.forEach((file) => {
-      const filesExtention = path.extname(file).toLowerCase(); //path.extname allow you to extract specific components from file paths, such as file extensions.
-      if (images.includes(filesExtention)) {
-        console.log(filesExtention);
-      }       
-    });
+    console.error('Error reading source directory:', err);
+    return;
   }
+
+  files.forEach((file) => {
+    const fileExtension = path.extname(file).toLowerCase();
+    if (images.includes(fileExtension)) {
+      const sourcePath = path.join(source, file);
+      const destinationPath = path.join(imageFolder, file);
+      
+      fs.rename(sourcePath, destinationPath, (err) => {
+        if (err) {
+          console.error('Error moving file:', err);
+        } else {
+          console.log(`File "${file}" moved successfully!`);
+        }
+      });
+    }
+  });
 });
