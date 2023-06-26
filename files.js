@@ -8,6 +8,14 @@ const images = ['.png', '.jpg', '.jpeg'];
 const documents = ['pdf', 'docx', 'doc'];
 const videos = ['mp4', 'mov'];
 
+//make a image folder
+
+if (!fs.existsSync('./images')) {
+  fs.mkdir('./images', (err) => {
+    err ? console.log(err) : console.log('Folder created!!');
+  });
+} 
+
 //readdir - get  list of every file inside the folder...
 fs.readdir('./source', (err, files) => {
   if (err) {
