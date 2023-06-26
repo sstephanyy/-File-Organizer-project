@@ -27,7 +27,7 @@ fs.readdir(source, (err, files) => {
     files.forEach((file) => {
       const filesExtention = path.extname(file).toLowerCase(); //path.extname allow you to extract specific components from file paths, such as file extensions.
       if (images.includes(filesExtention)) {
-        console.log(filesExtention);
+        
       }       
     });
   }
