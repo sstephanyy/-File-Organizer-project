@@ -8,8 +8,6 @@ const images = ['.png', '.jpg', '.jpeg'];
 const documents = ['pdf', 'docx', 'doc'];
 const videos = ['mp4', 'mov'];
 
-//Read files from the source directory (folder named 'source')
-
 //readdir - get  list of every file inside the folder...
 fs.readdir('./source', (err, files) => {
   if (err) {
